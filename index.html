@@ -1,69 +1,147 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Learning React - Buzzword ⚡ Talk</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css">
+	<title>Learning React - Buzzword ⚡ Talk</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/solarized.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>O Component, My Component</h1>
-					<h2>A brief description on react component flavours and their use case </h2>
-					<p>&nbsp;</p>
-					<p>Thomas Kolar, Engineer @SilverTours GmbH</p>
-					<ul class="fa-ul">
-						<li style="list-style: none;"><a href="mailto:thomas.kolar@billiger-mietwagen.de"><i class="fa-li fa fa-envelope-o" aria-hidden="true"></i>&nbsp;kolar@billiger-mietwagen.de</a></li>
-						<li style="list-style: none;"><a href="https://github.com/C3-TKO/"><i class="fa-li fa fa-github" aria-hidden="true"></i>&nbsp;C3-TKO</li></a>
-					</ul>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>O Component! My Component!</h1>
+				<h2>Understanding the difference of React component types</h2>
+				<p>&nbsp;</p>
+				<p>Thomas Kolar, Engineer @SilverTours GmbH</p>
+				<ul class="fa-ul">
+					<li style="list-style: none;">
+						<a href="mailto:thomas.kolar@billiger-mietwagen.de">
+							<i class="fa-li fa fa-envelope-o" aria-hidden="true"></i>&nbsp;kolar@billiger-mietwagen.de</a>
+					</li>
+					<li style="list-style: none;">
+						<a href="https://github.com/C3-TKO/">
+							<i class="fa-li fa fa-github" aria-hidden="true"></i>&nbsp;C3-TKO</li>
+					</a>
+				</ul>
+			</section>
+			<section>
+				<h2>Overview of component types</h2>
+				<h3>Scope: ECMAScript 6 (ES 2015) class syntax</h3>
+				<ul>
+					<li class="fragment fade-up">Component</li>
+					<li class="fragment fade-up">PureComponent</li>
+					<li class="fragment fade-up">Stateless Functional Component (SFC)</li>
+				</ul>
+			</section>
+			<section>
+				<span>Component</span>
+				<pre><code data-trim data-noescape class="lang-javascript hljs">
+export class Demo extends React.Component {
+	<span class="fragment fade-up">constructor(props) {
+		super(props);
+		<span class="fragment fade-up">this.state = {};</span>
+	}</span>
+	<span class="fragment fade-up">render(
+		return(<span>{&#x3C;span&#x3E;this.props.demoProp&#x3C;/span&#x3E;}</span>);
+	)</span>
+});
+
+<span class="fragment fade-up">Demo.propTypes = {
+	demoProp: React.PropTypes.string
+};</span>
+
+<span class="fragment fade-up">Demo.defaultProps = {
+  	demoProp: 'Just a string'
+};</span>
+				</code></pre>
+			</section>
+			<section>
+				<span>PureComponent</span>
+				<pre><code data-trim data-noescape class="lang-javascript hljs">
+<span class="fragment fade-out" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="0">export class Demo extends React.PureComponent {</span><span class="fragment none" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="0">export class Demo extends React.<mark style="background: #268bd2">Pure</mark>Component {</span>
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+	render(
+		return(<span>{&#x3C;span&#x3E;this.props.demoProp&#x3C;/span&#x3E;}</span>);
+	)
+});
+
+Demo.propTypes = {
+	demoProp: React.PropTypes.string
+};
+
+Demo.defaultProps = {
+	demoProp: 'Just a string'
+};
+				</code></pre>
+			</section>
+			<section>
+					<span>Stateless Functional Components</span>
+					<pre><code data-trim data-noescape class="lang-javascript hljs">
+export const Demo = ({ demoProp }) => {
+	return &#x3C;span&#x3E;demoProp&#x3C;/span&#x3E;
+};
+
+Demo.propTypes = {
+	demoProp: React.PropTypes.string
+};
+
+Demo.defaultProps = {
+	demoProp: 'Just a string'
+};
+					</code></pre>
 				</section>
-				<section>
-					<h1>Overview</h1>
-					<ul>
-						<li class="fragment fade-up">Introduction</li>
-						<li class="fragment fade-up">Problem Statement</li>
-						<li class="fragment fade-up">Redux</li>
-                        <li class="fragment fade-up">Live Coding Session</li>
-					</ul>
-				</section>
-			</div>
 		</div>
+	</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+
+
+
+			width: '100%',
+			height: '100%',
+
+			margin: 0,
+	minScale: 1,
+	maxScale: 1,
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+</body>
+
 </html>
