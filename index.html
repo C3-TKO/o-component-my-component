@@ -98,16 +98,15 @@ Demo.defaultProps = {
 				</code></pre>
 			</section>
 			<section>
-				<h3>Lifecycle & Reconciliation</h3>
+				<h3>Component Lifecycle & Reconciliation</h3>
 				<p class="fragment fade-up">shouldComponentUpdate()</p>
 				<img class="plain fragment fade-up" height="50%" width="50%" src="/img/shouldComponentUpdate.png"/>
 				
 			</section>
 			<section>
-					<h2>Difference Component and purecomponent</h2>
-				
-					<p>shouldComponentUpdate Shallow compare</p>
-				</section>
+				<h2>Difference Component and purecomponent</h2>
+				<p>shouldComponentUpdate Shallow compare</p>
+			</section>
 			<section>
 				<span>Stateless Functional Components (SFC)</span>
 				<pre><code data-trim data-noescape class="lang-javascript hljs">
@@ -125,14 +124,28 @@ Demo.defaultProps = {
 				</code></pre>
 			</section>
 			<section>
-					<span>Difference between SFC and class Components</span>
-					<section>
-						<h3>shouldComponentUpdate Shallow compare</h3>
-					</section>
-					<section>
-						<h3>shouldComponentUpdate example</h3>
-						<span><a href="https://reactjs.org/docs/optimizing-performance.html#shouldcomponentupdate-in-action">Von hier</a></span>
-					</section>
+				<h2>Differences between SFC and class Components</h2>
+				<ul>
+					<li class="fragment fade-up">No lifecycle</li>
+					<li class="fragment fade-up">No state</li>
+					<li class="fragment fade-up">No ref to children</li>
+					<li class="fragment fade-up">Increased performance</li>
+					<li class="fragment fade-up">Bloated components and poor data structures are easily spotted</li>
+					<li class="fragment fade-up">High Signal-to-Noise Ratio</li>
+				</ul>
+				
+			</section>
+			<section>
+					<h2>When to use which type</h2>
+					<ul>
+						<li class="fragment fade-up">No lifecycle</li>
+						<li class="fragment fade-up">No state</li>
+						<li class="fragment fade-up">No ref to children</li>
+						<li class="fragment fade-up">Increased performance</li>
+						<li class="fragment fade-up">Bloated components and poor data structures are easily spotted</li>
+						<li class="fragment fade-up">High Signal-to-Noise Ratio</li>
+					</ul>
+					
 				</section>
 		</div>
 	</div>
