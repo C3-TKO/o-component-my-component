@@ -48,10 +48,15 @@
 				<h2>Overview of component types</h2>
 				<h3>Scope: ECMAScript 6 (ES 2015) class syntax</h3>
 				<ul>
-					<li class="fragment fade-up">Component</li>
-					<li class="fragment fade-up">PureComponent</li>
-					<li class="fragment fade-up">Stateless Functional Component (SFC)</li>
+					<li class="fragment fade-up" data-fragment-index="1">Component</li>
+					<li class="fragment fade-up" data-fragment-index="2">PureComponent</li>
+					<li class="fragment fade-up" data-fragment-index="3">Stateless Functional Component (SFC)</li>
+					<li class="fragment fade-up" data-fragment-index="4">
+							<span class="fragment fade-up" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="4">Higher Order Component?</span>
+							<strike class="fragment none" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-decoration: line-through; color: red;" data-fragment-index="5"><span style="color: #586e75">Higher Order Component?</span></strike>	
+					</li>
 				</ul>
+				
 			</section>
 			<section>
 				<span>Component</span>
@@ -98,15 +103,46 @@ Demo.defaultProps = {
 				</code></pre>
 			</section>
 			<section>
-				<h3>Component Lifecycle & Reconciliation</h3>
-				<p class="fragment fade-up">shouldComponentUpdate()</p>
-				<img class="plain fragment fade-up" height="50%" width="50%" src="/img/shouldComponentUpdate.png"/>
-				
+				<h3>Component Lifeycle</h3>
+				<ul>
+						<li class="fragment fade-up" data-fragment-index="1">componentWillMount</li>
+						<li class="fragment fade-up" data-fragment-index="2">componentDidMount</li>
+						<li class="fragment fade-up" data-fragment-index="3">componentWillReceiveProps</li>
+						<li class="fragment fade-up" data-fragment-index="4">
+								<span class="fragment fade-up" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;" data-fragment-index="4">shouldComponentUpdate</span>
+								<mark class="fragment none" style="position:absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; background: #268bd2" data-fragment-index="7"><span>shouldComponentUpdate</span></mark>
+								<li class="fragment fade-up" data-fragment-index="5">componentWillUpdate</li>
+								<li class="fragment fade-up" data-fragment-index="6">componentDidUpdate</li>
+						</li>
+					</ul>
 			</section>
 			<section>
-				<h2>Difference Component and purecomponent</h2>
-				<p>shouldComponentUpdate Shallow compare</p>
+				<h3>Reconciliation</h3>
+				<img class="plain" height="60%" width="60%" src="/img/shouldComponentUpdate.png"/>
 			</section>
+			<section>
+					<h3>Difference between component and purecomponent</h3>
+					<p class="fragment fade-up">PureComponent implements shouldComponentUpdate() using shallow comparison</p>
+					<pre class="fragment fade-up"><code data-trim data-noescape class="lang-javascript hljs">
+						shouldComponentUpdate(nextProps) {
+							return 
+								nextProps.a !== this.props.a || 
+								nextProps.b !== this.props.b;
+						}
+						</code></pre>
+				</section>
+				<section>
+						<h3>Shallow comparison issues in javascript</h3>
+						<pre class="fragment fade-up"><code data-trim data-noescape class="lang-javascript hljs">
+								objectCompare = {foo: "bar"} === {foo: "bar"} ;
+								arrayCompare = ["foo", "bar"] === ["foo", "bar"];
+
+								console.log(objectCompare, arrayCompare);
+
+								<span class="fragment fade-up">false false</span>
+						</code></pre>
+					</section>
+			
 			<section>
 				<span>Stateless Functional Components (SFC)</span>
 				<pre><code data-trim data-noescape class="lang-javascript hljs">
@@ -114,13 +150,13 @@ export const Demo = ({ demoProp, otherDemoProp, foo, bar }) => {
 	return &#x3C;span&#x3E;demoProp&#x3C;/span&#x3E;
 };
 
-Demo.propTypes = {
+<span class="fragment fade-up">Demo.propTypes = {
 	demoProp: React.PropTypes.string
-};
+};</span>
 
-Demo.defaultProps = {
+<span class="fragment fade-up">Demo.defaultProps = {
 	demoProp: 'Just a string'
-};
+};</span>
 				</code></pre>
 			</section>
 			<section>
@@ -136,14 +172,11 @@ Demo.defaultProps = {
 				
 			</section>
 			<section>
-					<h2>When to use which type</h2>
+					<h2>When to use which type?</h2>
 					<ul>
-						<li class="fragment fade-up">No lifecycle</li>
-						<li class="fragment fade-up">No state</li>
-						<li class="fragment fade-up">No ref to children</li>
-						<li class="fragment fade-up">Increased performance</li>
-						<li class="fragment fade-up">Bloated components and poor data structures are easily spotted</li>
-						<li class="fragment fade-up">High Signal-to-Noise Ratio</li>
+						<li class="fragment fade-up">No lifecycle, no state, no ref to children required <i class="fa fa-arrow-right" aria-hidden="true"></i> SFC</li>
+						<li class="fragment fade-up">shouldComponentUpdate() not implemented <i class="fa fa-arrow-right" aria-hidden="true"></i> Component</li>
+						<li class="fragment fade-up">shouldComponentUpdate() implemented <i class="fa fa-arrow-right" aria-hidden="true"></i> Consider PureComponent but beware the shallow comparison and the context</li>
 					</ul>
 					
 				</section>
